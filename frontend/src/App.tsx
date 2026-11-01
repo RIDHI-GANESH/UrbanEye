@@ -1,4 +1,5 @@
 
+import CitizenPortal from './CitizenPortal'
 import { useState } from 'react'
 import {
   Activity,
@@ -103,7 +104,21 @@ function App() {
   const [selectedIssue, setSelectedIssue] = useState('UE-1024')
 
   const selected = issues.find((issue) => issue.id === selectedIssue)
-
+if (activeNav === 'Citizen Portal') {
+  return (
+    <div>
+      <div className="border-b border-emerald-100 bg-white px-5 py-3">
+        <button
+          onClick={() => setActiveNav('Overview')}
+          className="rounded-lg bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800"
+        >
+          ← Back to Admin Dashboard
+        </button>
+      </div>
+      <CitizenPortal />
+    </div>
+  )
+}
   return (
     <div className="min-h-screen bg-[#f5f7f8] text-slate-800">
       <div className="flex min-h-screen">
@@ -184,6 +199,12 @@ function App() {
                 Search anything...
                 <span className="rounded border border-slate-200 px-1.5 py-0.5">⌘ K</span>
               </div>
+            <button
+  onClick={() => setActiveNav('Citizen Portal')}
+  className="rounded-xl bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+>
+  Citizen Portal
+</button>
               <button className="relative rounded-xl border border-slate-200 p-2.5 text-slate-500 hover:bg-slate-50">
                 <Bell size={18} />
                 <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
@@ -516,3 +537,4 @@ function Detail({ label, value }: { label: string; value: string }) {
 }
 
 export default App
+
